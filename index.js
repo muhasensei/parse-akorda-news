@@ -23,12 +23,12 @@ const getAllLinks = (document) => {
 }
 
 const getArticleContent = (article) => {
-  let x = article.querySelectorAll(".mt-5 p");
+  let x = article.querySelectorAll(".mt-5 article p");
   let contentText = ''
   for (let i=0; i<x.length; i++){
-    contentText += x[i].textContent;
+    contentText += x[i].textContent + '\n';
   };
-  return '///' + contentText;
+  return contentText + '///';
 }
 
 const writeDataToFile = (data, fileName = 'article-texts') => {
@@ -38,7 +38,6 @@ const writeDataToFile = (data, fileName = 'article-texts') => {
   console.log('text writing finish')
 }
 
-/* 
 // reading links and writng articles to file
 
 fs.promises.readFile("article-links.txt")
@@ -65,7 +64,6 @@ fs.promises.readFile("article-links.txt")
    console.log(error);
 })
 
-*/
 
 /*
 
