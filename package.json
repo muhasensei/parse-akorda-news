@@ -1,18 +1,17 @@
 {
-  "name": "html-fetch",
+  "name": "news-articles-fetch",
   "version": "1.0.0",
-  "description": "",
+  "description": "parsing news articles from akorda.kz using node js for learning purposes",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["node js", "parsing"],
+  "author": "Zhanuzakov M. - zhanmuha01@gmail.com",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.27.2",
-    "jsdom": "^20.0.0",
-    "node-fetch": "^3.2.6"
+    "jsdom": "^20.0.0"
   }
 }
