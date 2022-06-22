@@ -38,36 +38,37 @@ const writeDataToFile = (data, fileName = 'article-texts') => {
   console.log('text writing finish')
 }
 
+
 // reading links and writng articles to file
 
 fs.promises.readFile("article-links.txt")
-.then(function(result) {
-  articleUrls = (result + '')?.split(';')?.slice(0, 1200)
-  const articlePromises = articleUrls.map(async (article) => {
-    await axios.get(`${baseUrl}${article}`)
-      .then((response) => {
-        const docBody = stringToHTML(response.data)
-        data += getArticleContent(docBody);
+    .then(function(result) {
+      articleUrls = (result + '')?.split(';')?.slice(0, 1000)
+      const articlePromises = articleUrls.map(async (article) => {
+        await axios.get(`${baseUrl}${article}`)
+            .then((response) => {
+              const docBody = stringToHTML(response.data)
+              data += getArticleContent(docBody);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
       })
-      .catch((error) => {
-        console.log(error);
-    });
-  })
 
-  Promise.all(articlePromises).then((res) => {
-    writeDataToFile(data, 'article-texts')
-  }).catch((err) => {
-    console.log(err)
-  })
-})
-.catch(function(error) {
-   console.log(error);
-})
+      Promise.all(articlePromises).then((res) => {
+        writeDataToFile(data, 'article-texts')
+      }).catch((err) => {
+        console.log(err)
+      })
+    })
+    .catch(function(error) {
+      console.log(error);
+    })
 
 
 /*
 
-// checking article length
+// checking articles length
 
 fs.promises.readFile("article-texts.txt")
 .then(function(result) {
@@ -77,8 +78,8 @@ fs.promises.readFile("article-texts.txt")
    console.log(error);
 })
 
-*/
 
+*/
 
 /*
 // getting links and writing to file
